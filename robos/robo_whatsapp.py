@@ -28,10 +28,10 @@ class RoboWhatsapp:
                 print("Aguardando o login no Whatsapp")
                 sleep(5)
             except:
-                print("Login realizado")
+                print("\nLogin realizado\n")
                 control = False
 
-        print("Buscando arquivo jobs.xlsx")
+        print("Buscando arquivo jobs.xlsx\n")
         path_file = "./jobs.xlsx"
         workbook = openpyxl.load_workbook(path_file)
         page_jobs = workbook['Sheet1']
@@ -54,7 +54,7 @@ class RoboWhatsapp:
                 time=10
             ).click()
             
-            print("Mensagem enviada")
+            print("\nMensagem enviada\n")
 
             sleep(2)
 
