@@ -10,11 +10,19 @@ class RoboLinkedin:
     def __init__(self) -> None:
         self.browser = WebBrowser(url="https://www.linkedin.com/login")
 
-    def validation(self, validation):
-        input_validation = self.browser.atribuites().find_element(By.ID, 'input__email_verification_pin')
-        input_validation.send_keys(validation)
+    def validation(self):
+        try:
+            input_validation = self.browser.driver_wait(
+                driver=self.browser.atribuites(),
+                element=(By.ID, 'input__email_verification_pin'),
+                time=10
+            )
+            input_validation.send_keys(print("Insira o código de verificação: "))
 
-        self.browser.atribuites().find_element(By.ID, 'email-pin-submit-button').click()
+            return self.browser.atribuites().find_element(By.ID, 'email-pin-submit-button').click()
+
+        except Exception as e:
+            return print("Input de validação não encontrado")
 
     def get_job(self, search: str):
         try:
@@ -63,33 +71,42 @@ class RoboLinkedin:
             
             print(pdDF)
             
-            self.browser.atribuites().quit()
             print("Terminado")
+            return self.browser.atribuites().quit()
         except Exception as e:
-            print(f"Ocorreu um erro no get_job(): {e}")
+            return print(f"Ocorreu um erro no get_job(): {e}")
 
-    def initialise_robo(self, username: str, passowrd: str, search: str, validation: int):
-        
-        self.browser.initalise_web_browser()
+    def initialise_robo(self, username: str, passowrd: str, search: str):
         
         print("Iniciando robô linkedin")
-
-        input_email = self.browser.atribuites().find_element(By.ID, 'username')
+        self.browser.initalise_web_browser()
+        
+        input_email = self.browser.driver_wait(
+            driver=self.browser.atribuites(),
+            element=(By.ID, 'username'),
+            time=10
+        )
         input_email.send_keys(username)
 
-        input_password = self.browser.atribuites().find_element(By.ID, 'password')
+        input_password = self.browser.driver_wait(
+            driver=self.browser.atribuites(),
+            element=(By.ID, 'password'),
+            time=10
+        )
         input_password.send_keys(passowrd)
 
-        self.browser.atribuites().find_element(By.CLASS_NAME, 'login__form_action_container').click()
-
-        sleep(3)
+        self.browser.driver_wait(
+            driver=self.browser.atribuites(),
+            element=(By.CLASS_NAME, 'login__form_action_container'),
+            time=10
+        ).click()
 
         try:
-            self.validation(validation=validation)
+            self.validation()
 
             print('\nVerificação realizada!\n')
 
-            self.get_job(search=search)
-        except:
-            print('\nNão tem validação\n')
-            self.get_job(search=search)
+            return self.get_job(search=search)
+        except Exception:
+            print('\nLinkedin já verificado\n')
+            return self.get_job(search=search)
