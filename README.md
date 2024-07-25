@@ -54,7 +54,7 @@ O servidor irá rodar localmente na porta ``8888``
 
 ### Endpoint
 
-    /robo
+    ["POST"]/robo
 
 No corpo da requisição, deve haver um objeto JSON com as seguintes informações:
 
@@ -69,15 +69,7 @@ No corpo da requisição, deve haver um objeto JSON com as seguintes informaçõ
 
 *O número deve respeitar a exigência de 13 dígitos no seguinte formato: ``código do país + código de área + número contendo 9 dígitos``. Ex.: ``5511123456789``.*
 
-Caso seu LinkedIn não esteja autenticado no seu navegador, será preciso informar o código de validação, que é enviado para seu e-mail, junto ao corpo da requisição:
-
-```bash
-    {
-        ...
-        "validation": codigo_de_validação
-    }
-```
-Isso fará com que o navegador seja adicionado à lista de dispositivos confiáveis do seu LinkedIn.
+OBS.: Caso seu LinkedIn não esteja autenticado no seu navegador, será preciso informar o código de validação, que é enviado para seu e-mail. Isso fará com que o navegador seja adicionado à lista de dispositivos confiáveis do seu LinkedIn.
 
 ## Atenção
 ### *Fique atento, pois será necessário que você faça login no WhatsApp Web com seu dispositivo.*
