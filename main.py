@@ -7,7 +7,13 @@ class Main:
         self.robo_whatsapp = RoboWhatsapp()
 
     def start_robo_linkedin(self, username: str, passowrd: str, search: str, validation: int):
-        return self.robo_linkedin.initialise_robo(username, passowrd, search, validation)
+        try:
+            return self.robo_linkedin.initialise_robo(username, passowrd, search, validation)
+        except Exception as e:
+            print(f"Ocorreu um erro no start_robo_linkedin(): {e}")
     
     def start_robo_whatsapp(self, phone: int):
-        return self.robo_whatsapp.initialise_robo_whatsapp(phone)
+        try:
+            return self.robo_whatsapp.initialise_robo_whatsapp(phone)
+        except Exception as e:
+            print(f"Ocorreu um erro no start_robo_whatsapp(): {e}")
