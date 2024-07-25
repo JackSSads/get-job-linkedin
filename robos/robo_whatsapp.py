@@ -1,24 +1,22 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 import openpyxl
 from urllib.parse import quote
 from time import sleep
 
-browser = webdriver.Chrome()
+from src.utils import WebBrowser
 
 class RoboWhatsapp:
     def __init__(self) -> None:
-        pass
+        self.browser = WebBrowser(url="https://web.whatsapp.com/")
 
     def initialise_robo_whatsapp(self, phone: int):
+        self.browser.initalise_web_browser()
         print("iniciando robô whatsapp")
         sleep(5)
 
-        path_file = "jobs.xlsx"
+        path_file = "./jobs.xlsx"
         workbook = openpyxl.load_workbook(path_file)
         page_jobs = workbook['Sheet1']
-
-        browser.get("https://web.whatsapp.com")
 
         sleep(20)
               
@@ -32,13 +30,12 @@ class RoboWhatsapp:
             
             sleep(5)
             
-            browser.get(link_message)
+            self.browser.atribuites().get(link_message)
 
             sleep(5)
 
-            browser.find_element(By.XPATH, '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[2]/button').click()
+            self.browser.atribuites().find_element(By.XPATH, '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[2]/button').click()
 
             sleep(2)
 
-        browser.quit()
-
+        self.browser.atribuites().quit()
