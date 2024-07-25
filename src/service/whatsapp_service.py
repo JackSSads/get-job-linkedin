@@ -12,4 +12,4 @@ class WhatsappService():
             print("Robô Whatsapp finalizado")
             return res
         except Exception as e:
-             print(f"Ocorreu um erro no init_robo_whatsapp(): {e}")
+             return print(f"Ocorreu um erro no init_robo_whatsapp(): {e}")
