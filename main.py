@@ -8,7 +8,7 @@ class Main:
 
     def start_robo_linkedin(self, username: str, passowrd: str, search: str):
         try:
-            return "self.robo_linkedin.initialise_robo(username, passowrd, search)"
+            return self.robo_linkedin.initialise_robo(username, passowrd, search)
         except Exception as e:
             return print(f"Ocorreu um erro no start_robo_linkedin(): {e}")
     
