@@ -54,6 +54,22 @@ class RoboLinkedin:
 
             sleep(5)
 
+            # This code snippet is scrolling the web page to a specific element identified by the
+            # class name 'global-footer-compact'.
+            scroll = self.browser.driver_wait(
+                driver=self.browser.atribuites(),
+                element=(By.CLASS_NAME, 'global-footer-compact'),
+                time=15
+            )
+            if scroll:
+                # Execute o script para rolar até o elemento
+                self.browser.atribuites().execute_script("arguments[0].scrollIntoView(true);", scroll)
+                print("Scrollado para o elemento Footer.")
+                sleep(5)
+
+            else:
+                print("Elemento Footer não encontrado, scrolling falhou.")
+
             # Capturando texto e link da vaga
             list_elements = self.browser.atribuites().find_elements(By.CLASS_NAME, 'job-card-container__link')
             text_job = [job.text for job in list_elements]
