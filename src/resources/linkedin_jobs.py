@@ -4,7 +4,7 @@ from src.service.whatsapp_service import WhatsappService
 
 robo_resource = Blueprint("robo", __name__, url_prefix="/robo")
 
-@robo_resource.route("/", methods=["GET"])
+@robo_resource.route("/", methods=["POST"])
 def get_jobs():
     try:
         req = request.json
