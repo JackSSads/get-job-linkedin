@@ -22,24 +22,11 @@ No macOS/Linux:
 ```
 
 ## Instalando dependências
-As dependências devem ser instaladas utilizando um gerenciador de pacotes como o ``pip``.
-Instale as dependências executando os comandos abaixo:
+As dependências devem ser instaladas utilizando o gerenciador de pacotes ``pip``.
+Instale as dependências executando o comando abaixo:
 
-Selenium
 ```bash
-    pip install selenium
-```
-Falsk
-```bash
-    pip install flask
-```
-Openpyxl
-```bash
-    pip install openpyxl
-```
-Pandas
-```bash
-    pip install pandas
+    pip install -r requirements.txt
 ```
 
 ## Iniciando o projeto
