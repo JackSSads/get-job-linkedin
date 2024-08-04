@@ -11,18 +11,21 @@ class RoboLinkedin:
         self.browser = WebBrowser(url="https://www.linkedin.com/login")
 
     def validation(self):
-        try:
-            input_validation = self.browser.driver_wait(
-                driver=self.browser.atribuites(),
-                element=(By.ID, 'input__email_verification_pin'),
-                time=10
-            )
-            input_validation.send_keys(print("Insira o código de verificação: "))
+        control = True
+        while control:
+            try:
+                self.browser.driver_wait(
+                    driver=self.browser.atribuites(),
+                    element=(By.ID, 'input__email_verification_pin'),
+                    time=10
+                )
 
-            return self.browser.atribuites().find_element(By.ID, 'email-pin-submit-button').click()
+                print("Aguardando validação")
 
-        except Exception as e:
-            return print("Input de validação não encontrado")
+                sleep(2)
+            except Exception as e:
+                control = False
+                return print("Linkedin validado!")
 
     def get_job(self, search: str):
         try:
@@ -54,8 +57,7 @@ class RoboLinkedin:
 
             sleep(5)
 
-            # This code snippet is scrolling the web page to a specific element identified by the
-            # class name 'global-footer-compact'.
+            # buscando elemento footer para fazer o scroll
             scroll = self.browser.driver_wait(
                 driver=self.browser.atribuites(),
                 element=(By.CLASS_NAME, 'global-footer-compact'),
@@ -74,23 +76,27 @@ class RoboLinkedin:
             list_elements = self.browser.atribuites().find_elements(By.CLASS_NAME, 'job-card-container__link')
             text_job = [job.text for job in list_elements]
             link_job = [job.get_attribute("href") for job in list_elements]
-            
-            dictDF = {
-                'Vaga': text_job,
-                'Links': link_job
-            }
-            
-            print("Vagas agrupadas")
-            pdDF = pd.DataFrame(dictDF)
-            pdDF.to_excel('./jobs.xlsx', index=True)
-            print("Arquivo jobs.xlsx criado\n")
-            
-            print(pdDF)
-            
+                       
+            self.insert_data_in_excel_file(text_job, link_job)
+
             print("Terminado")
             return self.browser.atribuites().quit()
         except Exception as e:
             return print(f"Ocorreu um erro no get_job(): {e}")
+
+    def insert_data_in_excel_file(self, jobs, links):
+        print("Inserindo dados no arquivo jobs.xlsx")
+
+        dictDF = {
+            'Vaga': jobs,
+            'Links': links
+        }
+
+        pdDF = pd.DataFrame(dictDF)
+        pdDF.to_excel('./jobs.xlsx', index=True)
+        print("Arquivo jobs.xlsx criado\n")
+        
+        print(pdDF)
 
     def initialise_robo(self, username: str, passowrd: str, search: str):
         
@@ -117,12 +123,6 @@ class RoboLinkedin:
             time=10
         ).click()
 
-        try:
-            self.validation()
+        self.validation()
 
-            print('\nVerificação realizada!\n')
-
-            return self.get_job(search=search)
-        except Exception:
-            print('\nLinkedin já verificado\n')
-            return self.get_job(search=search)
+        self.get_job(search=search)
