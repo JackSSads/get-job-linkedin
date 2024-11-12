@@ -9,12 +9,15 @@ __pycache__/
 .eggs/
 *.log
 
+jobs.xlsx
+
 # Environments
 .env
 *.env
 env/
 venv/
 ENV/
+envBot/
 venv.bak/
 venv/
 
