@@ -8,10 +8,11 @@ robo_resource = Blueprint("robo", __name__, url_prefix="/robo")
 def get_jobs():
     try:
         req = request.json
+        print("Iniciando robo...")
         robo_linkedin = LinkedinService(username=req['username'], password=req["password"], search=req["search"])
         robo_linkedin.init_robo_linkedin()
 
-        robo_whatsapp = WhatsappService(phone=req['phone'])
+        robo_whatsapp = WhatsappService(contact=req['contact'])
         robo_whatsapp.init_robo_whatsapp()
 
         response = {"status": "success", "data": "Vagas enviadas com sucesso!"}

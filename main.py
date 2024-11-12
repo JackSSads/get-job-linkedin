@@ -12,8 +12,8 @@ class Main:
         except Exception as e:
             return print(f"Ocorreu um erro no start_robo_linkedin(): {e}")
     
-    def start_robo_whatsapp(self, phone: int):
+    def start_robo_whatsapp(self, contact: str):
         try:
-            return self.robo_whatsapp.initialise_robo_whatsapp(phone)
+            return self.robo_whatsapp.initialise_robo_whatsapp(contact)
         except Exception as e:
             return print(f"Ocorreu um erro no start_robo_whatsapp(): {e}")
