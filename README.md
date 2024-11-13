@@ -60,4 +60,4 @@ OBS.: Caso seu LinkedIn não esteja autenticado no seu navegador, será preciso 
 ### *Fique atento, pois será necessário que você faça login no WhatsApp Web com seu dispositivo.*
 
 ## Saída
-Ao executar todos os passos corretamente, iniciará o processo de scraping no site do LinkedIn e, logo em seguida, iniciará o envio das mensagens para o número especificado.
+Ao executar todos os passos corretamente, iniciará o processo de scraping no site do LinkedIn e, logo em seguida, iniciará o envio das mensagens para o contato especificado.
