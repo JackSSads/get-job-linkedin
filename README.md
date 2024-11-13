@@ -50,11 +50,9 @@ No corpo da requisição, deve haver um objeto JSON com as seguintes informaçõ
         "username": "seu_email_do_linkedin",
         "password": "sua_senha",
         "search": "palavras_da_busca",
-        "phone": numero_pra_onde_será_mandado_as_vagas
+        "contact": "Nome do contato na agenda"
     }
 ```
-
-*O número deve respeitar a exigência de 13 dígitos no seguinte formato: ``código do país + código de área + número contendo 9 dígitos``. Ex.: ``5511123456789``.*
 
 OBS.: Caso seu LinkedIn não esteja autenticado no seu navegador, será preciso informar o código de validação, que é enviado para seu e-mail. Isso fará com que o navegador seja adicionado à lista de dispositivos confiáveis do seu LinkedIn.
 
